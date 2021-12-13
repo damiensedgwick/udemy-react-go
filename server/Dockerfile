@@ -9,7 +9,6 @@ COPY go.sum ./
 
 RUN go mod download
 
-
 COPY cmd/api/*.go ./
 
 RUN go build -o /udemy-react-go-api
