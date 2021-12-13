@@ -30,7 +30,7 @@ type application struct {
 func main() {
 	var c config
 
-	flag.IntVar(&c.port, "port", 4000, "Server port to listen on...")
+	flag.IntVar(&c.port, "port", 8080, "Server port to listen on...")
 	flag.StringVar(&c.env, "env", "Development", "Application environment (development|production)")
 	flag.Parse()
 

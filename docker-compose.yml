@@ -8,10 +8,10 @@ services:
     #   - docker-react-go-postgres
     volumes:
       - ./client:/app
-#   server:
-#     image: docker-react-go-postgres-api
-#     ports:
-#       - "8080:8080"
+  server:
+    image: udemy-react-go-api
+    ports:
+      - "8080:8080"
 #     networks:
 #       - docker-react-go-postgres
 #     depends_on:
