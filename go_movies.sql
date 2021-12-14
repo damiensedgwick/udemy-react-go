@@ -145,6 +145,23 @@ ALTER TABLE ONLY public.movies_genres ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Data for Name: genres; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.genres (id, genre_name, created_at, updated_at) FROM stdin;
+1	Drama	2021-05-17 00:00:00	2021-05-17 00:00:00
+2	Crime	2021-05-17 00:00:00	2021-05-17 00:00:00
+3	Action	2021-05-17 00:00:00	2021-05-17 00:00:00
+4	Comic Book	2021-05-17 00:00:00	2021-05-17 00:00:00
+5	Sci-Fi	2021-05-17 00:00:00	2021-05-17 00:00:00
+6	Mystery	2021-05-17 00:00:00	2021-05-17 00:00:00
+7	Adventure	2021-05-17 00:00:00	2021-05-17 00:00:00
+8	Comedy	2021-05-17 00:00:00	2021-05-17 00:00:00
+9	Romance	2021-05-17 00:00:00	2021-05-17 00:00:00
+\.
+
+
+--
 -- Data for Name: movies; Type: TABLE DATA; Schema: public; Owner: -
 --
 
