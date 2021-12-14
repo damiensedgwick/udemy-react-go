@@ -18,17 +18,17 @@ services:
       - postgres
   postgres:
     image: postgres
+    container_name: udemy-react-go-postgres
     ports:
       - "5432:5432"
     networks:
       - udemy-react-go-postgres
     volumes:
-      - postgres-data:/data/db
+      - database-data:/var/lib/postgresql/data/
     env_file:
       - .env
+volumes:
+  database-data:
 networks:
   udemy-react-go-postgres:
     driver: bridge
-volumes:
-  postgres-data:
-    driver: local
