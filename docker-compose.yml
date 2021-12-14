@@ -4,31 +4,31 @@ services:
     image: udemy-react-go-app
     ports:
       - "3000:3000"
-    # networks:
-    #   - docker-react-go-postgres
+    networks:
+      - udemy-react-go-postgres
     volumes:
       - ./client:/app
   server:
     image: udemy-react-go-api
     ports:
       - "8080:8080"
-#     networks:
-#       - docker-react-go-postgres
-#     depends_on:
-#       - postgres
-#   postgres:
-#     image: postgres
-#     ports:
-#       - "5432:5432"
-#     networks:
-#       - docker-react-go-postgres
-#     volumes:
-#       - postgres-data:/data/db
-#     env_file:
-#       - .env
-# networks:
-#   docker-react-go-postgres:
-#     driver: bridge
-# volumes:
-#   postgres-data:
-#     driver: local
+    networks:
+      - udemy-react-go-postgres
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - udemy-react-go-postgres
+    volumes:
+      - postgres-data:/data/db
+    env_file:
+      - .env
+networks:
+  udemy-react-go-postgres:
+    driver: bridge
+volumes:
+  postgres-data:
+    driver: local
