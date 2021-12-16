@@ -1,6 +1,7 @@
 package main
 
 import (
+	"backend/models"
 	"context"
 	"database/sql"
 	"flag"
@@ -8,7 +9,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"server/models"
 	"time"
 
 	_ "github.com/lib/pq"
@@ -37,36 +37,36 @@ type application struct {
 }
 
 func main() {
-	var c config
+	var cfg config
 
-	flag.IntVar(&c.port, "port", 8080, "Server port to listen on...")
-	flag.StringVar(&c.env, "env", "Development", "Application environment (development|production)")
-	flag.StringVar(&c.db.dsn, "dsn", "postgres://root:password@localhost/go_movies?sslmode=disable", "Postgres connection string")
+	flag.IntVar(&cfg.port, "port", 4000, "Server port to listen on")
+	flag.StringVar(&cfg.env, "env", "development", "Application environment (development|production")
+	flag.StringVar(&cfg.db.dsn, "dsn", "postgres://tcs@localhost/go_movies?sslmode=disable", "Postgres connection string")
 	flag.Parse()
 
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
-	db, err := openDB(c)
+	db, err := openDB(cfg)
 	if err != nil {
 		logger.Fatal(err)
 	}
 	defer db.Close()
 
 	app := &application{
-		config: c,
+		config: cfg,
 		logger: logger,
 		models: models.NewModels(db),
 	}
 
 	srv := &http.Server{
-		Addr:         fmt.Sprintf(":%d", c.port),
+		Addr:         fmt.Sprintf(":%d", cfg.port),
 		Handler:      app.routes(),
 		IdleTimeout:  time.Minute,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 30 * time.Second,
 	}
 
-	logger.Println("Starting server on port ", c.port)
+	logger.Println("Starting server on port", cfg.port)
 
 	err = srv.ListenAndServe()
 	if err != nil {
@@ -74,8 +74,8 @@ func main() {
 	}
 }
 
-func openDB(c config) (*sql.DB, error) {
-	db, err := sql.Open("postgres", c.db.dsn)
+func openDB(cfg config) (*sql.DB, error) {
+	db, err := sql.Open("postgres", cfg.db.dsn)
 	if err != nil {
 		return nil, err
 	}

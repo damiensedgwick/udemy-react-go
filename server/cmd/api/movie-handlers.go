@@ -2,9 +2,10 @@ package main
 
 import (
 	"errors"
-	"github.com/julienschmidt/httprouter"
 	"net/http"
 	"strconv"
+
+	"github.com/julienschmidt/httprouter"
 )
 
 func (app *application) getOneMovie(w http.ResponseWriter, r *http.Request) {
@@ -12,7 +13,7 @@ func (app *application) getOneMovie(w http.ResponseWriter, r *http.Request) {
 
 	id, err := strconv.Atoi(params.ByName("id"))
 	if err != nil {
-		app.logger.Println(errors.New("invalid id parameter"))
+		app.logger.Print(errors.New("invalid id parameter"))
 		app.errorJSON(w, err)
 		return
 	}
@@ -38,6 +39,7 @@ func (app *application) getAllMovies(w http.ResponseWriter, r *http.Request) {
 		app.errorJSON(w, err)
 		return
 	}
+
 }
 
 func (app *application) deleteMovie(w http.ResponseWriter, r *http.Request) {
@@ -52,6 +54,6 @@ func (app *application) updateMovie(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func (app *application) searchMovie(w http.ResponseWriter, r *http.Request) {
+func (app *application) searchMovies(w http.ResponseWriter, r *http.Request) {
 
 }
