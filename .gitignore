@@ -2,6 +2,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/react,node,go,visualstudiocode,macos,linux,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=react,node,go,visualstudiocode,macos,linux,windows
 
+.idea
+.idea/**
+
+
 ### Go ###
 # Binaries for programs and plugins
 *.exe
