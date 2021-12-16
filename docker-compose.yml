@@ -1,6 +1,6 @@
 version: '3'
 services:
-  client:
+  app:
     image: udemy-react-go-app
     ports:
       - "3000:3000"
@@ -8,7 +8,8 @@ services:
       - udemy-react-go-postgres
     volumes:
       - ./client:/app
-  server:
+      -
+  api:
     image: udemy-react-go-api
     ports:
       - "8080:8080"
@@ -16,9 +17,10 @@ services:
       - udemy-react-go-postgres
     depends_on:
       - postgres
-  postgres:
+      -
+  db:
     image: postgres
-    container_name: udemy-react-go-postgres
+    container_name: udemy-react-go-db
     ports:
       - "5432:5432"
     networks:
@@ -27,6 +29,7 @@ services:
       - database-data:/var/lib/postgresql/data/
     env_file:
       - .env
+      -
 volumes:
   database-data:
 networks:

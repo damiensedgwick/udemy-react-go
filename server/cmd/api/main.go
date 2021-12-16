@@ -39,7 +39,7 @@ type application struct {
 func main() {
 	var cfg config
 
-	flag.IntVar(&cfg.port, "port", 4000, "Server port to listen on")
+	flag.IntVar(&cfg.port, "port", 8080, "Server port to listen on")
 	flag.StringVar(&cfg.env, "env", "development", "Application environment (development|production")
 	flag.StringVar(&cfg.db.dsn, "dsn", "postgres://root:password@localhost/go_movies", "Postgres connection string")
 	flag.Parse()
