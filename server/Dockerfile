@@ -1,5 +1,5 @@
 FROM scratch
 
-COPY main ./
+COPY linux_build ./
 
-CMD [ "./main" ]
+CMD [ "./linux_build" ]
