@@ -6,6 +6,8 @@
 .idea/**
 
 main
+linux_build
+mac_build
 
 ### Go ###
 # Binaries for programs and plugins
