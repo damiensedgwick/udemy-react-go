@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 export const Movie = () => {
   const params = useParams();
@@ -43,11 +43,18 @@ export const Movie = () => {
     </div>
   )
 
-
   return (
     <div className="border border-black py-4 px-6 space-y-4">
       <h3 className="text-2xl">{movie.title}</h3>
-      <p>{movie.desc}</p>
+      <p>{movie.description}</p>
+      <p>
+        <small>
+          Genre:
+          {Object.keys(movie.genres).map((genre) => (
+            <>{" " + movie.genres[genre] + " "}</>
+          ))}
+        </small>
+      </p>
       <p>
         <small>runtime approx {movie.runtime} mins</small>
       </p>
