@@ -8,6 +8,7 @@ import { Movies } from "./components/Movies";
 import { Admin } from "./components/Admin";
 import { FourZeroFour } from "./components/FourZeroFour";
 import { Movie } from "./components/Movie";
+import { Genres } from "./components/Genres";
 
 ReactDom.render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDom.render(
             <Route path=":movieId" element={<Movie />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
+          <Route path="/genres" element={<Genres />} />
           <Route path="*" element={<FourZeroFour />} />
         </Routes>
       </Layout>

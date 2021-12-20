@@ -11,6 +11,9 @@ export const Navigation = () => {
         <NavLink to="/movies">Movies</NavLink>
       </li>
       <li className="underline">
+        <NavLink to="/genres">Genres</NavLink>
+      </li>
+      <li className="underline">
         <NavLink to="/admin">Manage Catalogues</NavLink>
       </li>
     </ul>
