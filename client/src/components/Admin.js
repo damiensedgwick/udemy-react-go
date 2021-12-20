@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Component } from 'react'
 
-export const Admin = () => {
-  return (
-    <div>
-      <h2 className="text-xl mb-4">Manage Movies</h2>
-    </div>
-  );
-};
+export default class Admin extends Component {
+    
+    render() {
+        return(
+            <h2>Manage Catalogue</h2>
+        );
+    }
+}

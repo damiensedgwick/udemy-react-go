@@ -1,9 +1,11 @@
-import React from "react";
+import React, { Component } from 'react';
 
-export const Home = () => {
-  return (
-    <div>
-      <h2 className="text-xl mb-4">Home</h2>
-    </div>
-  );
-};
+
+export default class Home extends Component {
+
+    render() {
+        return (
+            <h2>This is the home page</h2>
+        );
+    }
+}
