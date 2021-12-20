@@ -9,6 +9,7 @@ import { Admin } from "./components/Admin";
 import { FourZeroFour } from "./components/FourZeroFour";
 import { Movie } from "./components/Movie";
 import { Genres } from "./components/Genres";
+import { Genre } from "./components/Genre";
 
 ReactDom.render(
   <React.StrictMode>
@@ -16,11 +17,16 @@ ReactDom.render(
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
+
           <Route path="/movies" element={<Movies />}>
             <Route path=":movieId" element={<Movie />} />
           </Route>
+
+          <Route path="/genres" element={<Genres />}>
+            <Route path=":genreId" element={<Genre />} />
+          </Route>
+
           <Route path="/admin" element={<Admin />} />
-          <Route path="/genres" element={<Genres />} />
           <Route path="*" element={<FourZeroFour />} />
         </Routes>
       </Layout>

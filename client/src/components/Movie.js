@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 
 export const Movie = () => {
+  const navigate = useNavigate()
   const params = useParams();
   const movieId = parseInt(params.movieId, 10);
   const [movie, setMovie] = useState({});
@@ -44,20 +45,23 @@ export const Movie = () => {
   )
 
   return (
-    <div className="border border-black py-4 px-6 space-y-4">
-      <h3 className="text-2xl">{movie.title}</h3>
-      <p>{movie.description}</p>
-      <p>
-        <small>
-          Genre:
-          {Object.keys(movie.genres).map((genre) => (
-            <>{" " + movie.genres[genre] + " "}</>
-          ))}
-        </small>
-      </p>
-      <p>
-        <small>runtime approx {movie.runtime} mins</small>
-      </p>
-    </div>
+    <>
+      <button onClick={() => navigate("/movies")}>Back</button>
+      <div className="border border-black py-4 px-6 space-y-4">
+        <h3 className="text-2xl">{movie.title}</h3>
+        <p>{movie.description}</p>
+        <p>
+          <small>
+            Genre:
+            {Object.keys(movie.genres).map((genre) => (
+              <>{" " + movie.genres[genre] + " "}</>
+            ))}
+          </small>
+        </p>
+        <p>
+          <small>runtime approx {movie.runtime} mins</small>
+        </p>
+      </div>
+    </>
   );
 };

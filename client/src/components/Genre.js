@@ -1,13 +1,16 @@
-import React, {useState} from "react";
-import {NavLink, Outlet} from "react-router-dom";
+import React from "react";
+import {useParams} from "react-router-dom";
 
-export const Movies = () => {
+export const Genre = () => {
+  const params = useParams();
+  const genreId = parseInt(params.genreId, 10);
+
+  const [genre, setGenre] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(true);
-  const [movies, setMovies] = useState([]);
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    fetch('http://localhost:8080/v1/movies')
+    fetch(`http://localhost:8080/v1/genres/${genreId}`)
       .then((response) => {
 
         if (response.status !== 200) {
@@ -19,7 +22,7 @@ export const Movies = () => {
         return response.json()
       })
       .then((json) => {
-          setMovies(json.movies)
+          setGenre(json.genre)
           setIsLoading(false)
         },
         (error) => {
@@ -27,7 +30,7 @@ export const Movies = () => {
           setError(error)
         }
       )
-  }, []);
+  }, [genreId]);
 
   if (isLoading) return (
     <div>
@@ -41,20 +44,10 @@ export const Movies = () => {
     </div>
   )
 
+
   return (
     <div>
-      <h2 className="text-xl mb-4">Choose a Movie!</h2>
-
-
-      <ul className="space-y-1 flex flex-col mb-8">
-        {movies.map((movie) => (
-          <NavLink to={`/movies/${movie.id}`} key={movie.id}>
-            {movie.title}
-          </NavLink>
-        ))}
-      </ul>
-
-      <Outlet/>
+      <h2 className="text-xl mb-4">One Genre</h2>
     </div>
   );
 };
