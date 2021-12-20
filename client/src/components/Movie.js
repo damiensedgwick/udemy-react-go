@@ -1,65 +1,39 @@
-import React, {useState} from "react";
+import React from "react";
 import {useParams, useNavigate} from "react-router-dom";
+import useFetch from "../hooks/useFetch";
+import {Loading} from "./Loading";
+import {Error} from "./Error";
 
 export const Movie = () => {
   const navigate = useNavigate()
   const params = useParams();
   const movieId = parseInt(params.movieId, 10);
-  const [movie, setMovie] = useState({});
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
+  const {data, error} = useFetch(`http://localhost:8080/v1/movie/${movieId}`)
 
-  React.useEffect(() => {
-    fetch(`http://localhost:8080/v1/movie/${movieId}`)
-      .then((response) => {
-
-        if (response.status !== 200) {
-          let err = Error
-          err.message = "Invalid response code: " + response.status
-          setError({error: err})
-        }
-
-        return response.json()
-      })
-      .then((json) => {
-          setMovie(json.movie)
-          setIsLoading(false)
-        },
-        (error) => {
-          setIsLoading(false)
-          setError(error)
-        }
-      )
-  }, [movieId]);
-
-  if (isLoading) return (
-    <div>
-      <h2 className="text-xl mb-4">Loading...</h2>
-    </div>
+  if (!data) return (
+    <Loading />
   )
 
   if (error) return (
-    <div>
-      <h2 className="text-xl mb-4">{`Error: ${error.message}`}</h2>
-    </div>
+    <Error />
   )
 
   return (
     <>
       <button onClick={() => navigate("/movies")}>Back</button>
       <div className="border border-black py-4 px-6 space-y-4">
-        <h3 className="text-2xl">{movie.title}</h3>
-        <p>{movie.description}</p>
+        <h3 className="text-2xl">{data.movie.title}</h3>
+        <p>{data.movie.description}</p>
         <p>
           <small>
             Genre:
-            {Object.keys(movie.genres).map((genre) => (
-              <>{" " + movie.genres[genre] + " "}</>
+            {Object.keys(data.movie.genres).map((genre) => (
+              <>{" " + data.movie.genres[genre] + " "}</>
             ))}
           </small>
         </p>
         <p>
-          <small>runtime approx {movie.runtime} mins</small>
+          <small>runtime approx {data.movie.runtime} mins</small>
         </p>
       </div>
     </>

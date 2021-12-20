@@ -1,53 +1,29 @@
 import React from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import useFetch from "../hooks/useFetch";
+import {Loading} from "./Loading";
+import {Error} from "./Error";
 
 export const Genre = () => {
+  const navigate = useNavigate()
   const params = useParams();
   const genreId = parseInt(params.genreId, 10);
+  const {data, error} = useFetch(`http://localhost:8080/v1/genres/${genreId}`)
 
-  const [genre, setGenre] = React.useState({});
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch(`http://localhost:8080/v1/genres/${genreId}`)
-      .then((response) => {
-
-        if (response.status !== 200) {
-          let err = Error
-          err.message = "Invalid response code: " + response.status
-          setError({error: err})
-        }
-
-        return response.json()
-      })
-      .then((json) => {
-          setGenre(json.genre)
-          setIsLoading(false)
-        },
-        (error) => {
-          setIsLoading(false)
-          setError(error)
-        }
-      )
-  }, [genreId]);
-
-  if (isLoading) return (
-    <div>
-      <h2 className="text-xl mb-4">Loading...</h2>
-    </div>
+  if (!data) return (
+    <Loading />
   )
 
   if (error) return (
-    <div>
-      <h2 className="text-xl mb-4">{`Error: ${error.message}`}</h2>
-    </div>
+    <Error />
   )
 
-
   return (
-    <div>
-      <h2 className="text-xl mb-4">One Genre</h2>
-    </div>
+    <>
+      <button onClick={() => navigate("/movies")}>Back</button>
+      <div className="border border-black py-4 px-6 space-y-4">
+        <h3 className="text-2xl">{data.genre.genre_name}</h3>
+      </div>
+    </>
   );
 };
