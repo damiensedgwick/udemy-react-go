@@ -26,8 +26,6 @@ export const Movies = () => {
           </NavLink>
         ))}
       </ul>
-
-      <Outlet/>
     </div>
   );
 };

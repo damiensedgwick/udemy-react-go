@@ -19,7 +19,7 @@ export const Movie = () => {
   )
 
   return (
-    <>
+    <div className={`space-y-4`}>
       <button onClick={() => navigate("/movies")}>Back</button>
       <div className="border border-black py-4 px-6 space-y-4">
         <h3 className="text-2xl">{data.movie.title}</h3>
@@ -36,6 +36,6 @@ export const Movie = () => {
           <small>runtime approx {data.movie.runtime} mins</small>
         </p>
       </div>
-    </>
+    </div>
   );
 };

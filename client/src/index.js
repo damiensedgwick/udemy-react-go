@@ -17,15 +17,10 @@ ReactDom.render(
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-
-          <Route path="/movies" element={<Movies />}>
-            <Route path=":movieId" element={<Movie />} />
-          </Route>
-
-          <Route path="/genres" element={<Genres />}>
-            <Route path=":genreId" element={<Genre />} />
-          </Route>
-
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:movieId" element={<Movie />} />
+          <Route path="/genres" element={<Genres />} />
+          <Route path="/genres/:genreId" element={<Genre />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<FourZeroFour />} />
         </Routes>

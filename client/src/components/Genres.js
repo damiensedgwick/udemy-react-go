@@ -26,8 +26,6 @@ export const Genres = () => {
           </li>
         )}
       </ul>
-
-      <Outlet/>
     </div>
   );
 };
