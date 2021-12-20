@@ -51,6 +51,20 @@ func (app *application) getAllGenres(w http.ResponseWriter, r *http.Request) {
 	err = app.writeJSON(w, http.StatusOK, genres, "genres")
 }
 
+func (app *application) getAllMoviesByGenre(w http.ResponseWriter, r *http.Request) {
+	params := httprouter.ParamsFromContext(r.Context())
+
+	genreId, err := strconv.Atoi(params.ByName("genre_id"))
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+
+	movies, err := app.models.DB.All(genreId)
+
+	err = app.writeJSON(w, http.StatusOK, movies, "movies")
+}
+
 func (app *application) deleteMovie(w http.ResponseWriter, r *http.Request) {
 
 }

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 export const Genres = () => {
   const [genres, setGenres] = useState([]);
@@ -45,7 +45,7 @@ export const Genres = () => {
     <div>
       <h2 className="text-xl mb-4">Genres</h2>
 
-      <ul>
+      <ul className="space-y-1 flex flex-col mb-8">
         {genres.map((genre) => (
           <li key={genre.id}>
             <Link to={`/genre/${genre.id}`}>{genre.genre_name}</Link>
