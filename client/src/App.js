@@ -41,25 +41,12 @@ export default function App() {
 
         <div className="col-md-10">
           <Switch>
-            
-            <Route path="/movies/:id" component={OneMovie} />
-
-            <Route path="/movies">
-              <Movies />
-            </Route>
-
-            <Route path="/genre/:id" component={OneGenre} />
-
-            <Route exact path="/genres">
-              <Genres />
-            </Route>
-
-            <Route path="/admin">
-              <Admin />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/movies" component={Movies} />
+            <Route exact path="/movies/:id" component={OneMovie} />
+            <Route exact path="/genres" component={Genres} />
+            <Route exact path="/genre/:id" component={OneGenre} />
+            <Route exact path="/admin" component={Admin} />
           </Switch>
         </div>
       </div>
