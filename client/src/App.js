@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import {BrowserRouter as Router, Switch, Route, Link, useParams, useRouteMatch} from 'react-router-dom';
+import React from 'react';
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Movies from './components/Movies';
 import Admin from './components/Admin';
 import Home from './components/Home';
@@ -29,33 +29,33 @@ export default function App() {
               </li>
               <li className="list-group-item">
                 <Link to="/movies">Movies</Link>
-              </li>
-              <li className="list-group-item">
-                <Link to="/genres">Genres</Link>
-              </li>
-              <li className="list-group-item">
-                <Link to="/admin/add">Edit Movie</Link>
-              </li>
-              <li className="list-group-item">
-                <Link to="/admin">Manage Catalogue</Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
+                </li>
+                <li className="list-group-item">
+                  <Link to="/genres">Genres</Link>
+                </li>
+                <li className="list-group-item">
+                  <Link to="/admin/movie/0">Add Movie</Link>
+                </li>
+                <li className="list-group-item">
+                  <Link to="/admin">Manage Catalogue</Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
 
-        <div className="col-md-10">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/movies" component={Movies} />
-            <Route exact path="/movies/:id" component={OneMovie} />
-            <Route exact path="/genres" component={Genres} />
-            <Route exact path="/genre/:id" component={OneGenre} />
-            <Route exact path="/admin" component={Admin} />
-            <Route exact path="/admin/add" component={EditMovie} />
-          </Switch>
+          <div className="col-md-10">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/movies" component={Movies} />
+              <Route exact path="/movies/:id" component={OneMovie} />
+              <Route exact path="/genres" component={Genres} />
+              <Route exact path="/genre/:id" component={OneGenre} />
+              <Route exact path="/admin" component={Admin} />
+              <Route exact path="/admin/movie/:id" component={EditMovie} />
+            </Switch>
+          </div>
         </div>
       </div>
-    </div>
     </Router>
   );
 }
